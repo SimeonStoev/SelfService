@@ -1,0 +1,101 @@
+﻿@page
+@model SelfServiceHrProject.Pages.Leave.IndexModel
+
+@{
+    ViewData["Title"] = "Leaves";
+}
+
+<h3>Отпуски</h3>
+
+<form method="post" asp-page="/Leave/Index">
+    <input type="submit" class="btn btn-outline-primary btn-block" value="Основания за отпуск" asp-page-handler="reasons" />
+    <hr />
+    <input type="submit" class="btn btn-outline-primary btn-block" value="Оставащи отпуски" asp-page-handler="remaining" />
+
+</form>
+
+<hr />
+
+<p>
+    <a asp-page="Create" class="btn btn-outline-primary">Създай нова заявка</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="thead-light">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Leaves[0].StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Leaves[0].EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Leaves[0].Days)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Leaves[0].Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Leaves[0].Emplpoyee)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Leaves[0].LeaveReasons)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Leaves)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Days)
+                    </td>
+                    @{
+                        if (item.Status == 1)
+                        {
+                            <td>Чакаща</td>
+                        }
+                        else if (item.Status == 0)
+                        {
+                            <td>Отхвърлена</td>
+                        }
+                        else
+                        {
+                            <td>Одобрена</td>
+                        }
+
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Emplpoyee.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LeaveReasons.Name)
+                    </td>
+                    <td>
+                        <a asp-page="./Details" class="btn btn-outline-primary" asp-route-id="@item.Id">Детайли</a>
+                        @{
+                            if (Model.Role == 2)
+                            {
+                                if (item.Status == 1)
+                                {
+                                    <a asp-page="./Edit" class="btn btn-outline-primary" asp-route-id="@item.Id"> Действие</a>
+                                }
+
+                                <a asp-page="./Delete" class="btn btn-outline-primary" asp-route-id="@item.Id"> Изтриване</a>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

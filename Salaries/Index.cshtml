@@ -1,0 +1,87 @@
+﻿@page
+@model SelfServiceHrProject.Pages.Salaries.IndexModel
+
+@{
+    ViewData["Title"] = "Salaries";
+}
+
+<h3>Заплати</h3>
+
+@{
+    if (Model.Role == 2)
+    {
+        <p>
+            <a asp-page="Create" class="btn btn-outline-primary">Нов запис</a>
+        </p>
+    }
+}
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Salary[0].NetSalary)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Salary[0].BonusSalary)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Salary[0].FullNetSalary)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Salary[0].Employee)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Salary)
+            {
+                <tr>
+                    @{
+                        if (Model.Role == 1 && item.EmployeesId == Model.EmployeeId)
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NetSalary)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BonusSalary)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FullNetSalary)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Employee.FullName)
+                            </td>
+                            <td>
+                                <a asp-page="./Details" class="btn btn-outline-primary" asp-route-id="@item.Id">Детайли</a>
+                            </td>
+                        }
+                    }
+                    @{
+                        if (Model.Role == 2)
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NetSalary)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BonusSalary)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FullNetSalary)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Employee.FullName)
+                            </td>
+                            <td>
+                                <a asp-page="./Edit" class="btn btn-outline-primary" asp-route-id="@item.Id">Корекция</a>
+                                <a asp-page="./Details" class="btn btn-outline-primary" asp-route-id="@item.Id">Детайли</a>
+                            </td>
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

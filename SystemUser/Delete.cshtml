@@ -1,0 +1,44 @@
+﻿@page
+@model SelfServiceHrProject.Pages.SystemUser.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SystemUsers.Username)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SystemUsers.Username)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SystemUsers.Password)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SystemUsers.Password)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SystemUsers.Employee.FullName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SystemUsers.Employee.FullName)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="SystemUsers.ID" />
+        <input type="submit" value="Delete" class="btn btn-outline-danger" />
+        <a asp-page="./Index" class="btn btn-outline-primary">Back</a>
+    </form>
+</div>

@@ -1,0 +1,62 @@
+﻿@page
+@model SelfServiceHrProject.Pages.RemainingLeave.IndexModel
+
+@{
+    ViewData["Title"] = "Ramining Leaves";
+}
+
+<h3>Оставащи отпуски</h3>
+
+<p>
+    <a asp-page="Create" class="btn btn-outline-primary">Нов запис</a>
+</p>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RemainingLeaves[0].RemainingDays)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RemainingLeaves[0].Employee)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RemainingLeaves[0].LeaveReason)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.RemainingLeaves)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RemainingDays)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LeaveReason.Name)
+                    </td>
+                    <td>
+                        @{
+                            if (Model.Role == 2)
+                            {
+
+                                <a asp-page="./Edit" class="btn btn-outline-primary" asp-route-id="@item.Id">Корекция </a>
+                                <a asp-page="./Details" class="btn btn-outline-primary" asp-route-id="@item.Id">Детайли </a>
+                                <a asp-page="./Delete" class="btn btn-outline-primary" asp-route-id="@item.Id">Изтриване</a>
+
+                            }
+                            else
+                            {
+                                <a asp-page="./Details" class="btn btn-outline-primary" asp-route-id="@item.Id">Детайли</a>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

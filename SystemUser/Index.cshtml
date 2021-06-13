@@ -1,0 +1,63 @@
+﻿@page
+@model SelfServiceHrProject.Pages.SystemUser.IndexModel
+
+@{
+    ViewData["Title"] = "System Users";
+}
+
+<h3>Системни потребители</h3>
+
+<p>
+    <a asp-page="Create" class="btn btn-outline-primary">Нов запис</a>
+</p>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.SystemUsers[0].Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SystemUsers[0].Password)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SystemUsers[0].Role)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SystemUsers[0].Employee)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.SystemUsers)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    @{
+                        if (item.Role == 2)
+                        {
+                            <td> Мениджър </td>
+                        }
+                        else
+                        {
+                            <td> Служител </td>
+                        }
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.FullName)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" class="btn btn-outline-primary" asp-route-id="@item.ID">Корекция</a>
+                        <a asp-page="./Delete" class="btn btn-outline-primary" asp-route-id="@item.ID">Изтриване</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

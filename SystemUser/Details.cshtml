@@ -1,0 +1,43 @@
+﻿@page
+@model SelfServiceHrProject.Pages.SystemUser.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h3>Details</h3>
+
+<div>
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SystemUsers.Username)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SystemUsers.Username)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SystemUsers.Password)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SystemUsers.Password)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SystemUsers.Role)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SystemUsers.Role)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SystemUsers.Employee)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SystemUsers.Employee.FullName)
+        </dd>
+    </dl>
+</div>
+<div>
+
+    <a asp-page="./Index" class="btn btn-outline-primary">Back</a>
+</div>

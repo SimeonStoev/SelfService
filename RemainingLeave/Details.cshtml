@@ -1,0 +1,36 @@
+﻿@page
+@model SelfServiceHrProject.Pages.RemainingLeave.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h3>Details</h3>
+
+<div>
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RemainingLeaves.RemainingDays)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RemainingLeaves.RemainingDays)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RemainingLeaves.Employee)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RemainingLeaves.Employee.FullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RemainingLeaves.LeaveReason)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RemainingLeaves.LeaveReason.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Index" class="btn btn-outline-primary">Back</a>
+</div>

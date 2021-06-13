@@ -1,0 +1,33 @@
+﻿@page
+@model SelfServiceHrProject.Pages.Organisation.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Сигурни ли сте, че искате да изтриете записа?</h3>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Organisations.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Organisations.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Organisations.Code)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Organisations.Code)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Organisations.Id" />
+        <input type="submit" value="Изтрий" class="btn btn-outline-danger" />
+        <a asp-page="./Index" class="btn btn-outline-primary">Обратно</a>
+    </form>
+</div>

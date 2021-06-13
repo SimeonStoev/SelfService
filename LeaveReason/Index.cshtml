@@ -1,0 +1,62 @@
+﻿@page
+@model SelfServiceHrProject.Pages.LeaveReason.IndexModel
+
+@{
+    ViewData["Title"] = "Leave Reasons";
+}
+
+<h3>Основания за отпуск</h3>
+
+<p>
+    <a asp-page="Create" class="btn btn-outline-primary">Нов запис</a>
+</p>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.LeaveReasons[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LeaveReasons[0].Code)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LeaveReasons[0].Days)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.LeaveReasons)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Days)
+                    </td>
+                    @{
+                        if (Model.Role == 2)
+                        {
+                            <td>
+                                <a asp-page="./Edit" class="btn btn-outline-primary" asp-route-id="@item.Id">Корекция</a>
+                                <a asp-page="./Details" class="btn btn-outline-primary" asp-route-id="@item.Id">Детайли</a>
+                                <a asp-page="./Delete" class="btn btn-outline-primary" asp-route-id="@item.Id">Изтриване</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <a asp-page="./Details" class="btn btn-outline-primary" asp-route-id="@item.Id">Детайли</a>
+                            </td>
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

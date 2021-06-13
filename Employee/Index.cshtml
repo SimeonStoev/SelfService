@@ -1,0 +1,130 @@
+﻿@page
+@model SelfServiceHrProject.Pages.Employee.IndexModel
+
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<h3 style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Служители</h3>
+
+
+<form method="post">
+    <input type="submit" class="btn btn-outline-success" value="Експорт в ексел" asp-page-handler="export" />
+</form>
+
+<hr style="color:black" />
+@{
+    if (Model.Role == 2)
+    {
+        <p>
+            <a asp-page="Create" class="btn btn-outline-primary">Нов запис</a>
+        </p>
+
+        <hr style="color:black" />
+    }
+
+}
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Търси по име:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Търси" class="btn btn-primary" />
+            <a asp-page="./Index" class="btn btn-outline-primary">Към пълния списък</a>
+        </p>
+    </div>
+</form>
+
+<hr />
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
+                        @Html.DisplayNameFor(model => model.Employees[0].Name)
+                    </a>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employees[0].Surname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employees[0].Family)
+                </th>
+                @{
+                    if (Model.Role == 2)
+                    {
+                        <th>
+                            @Html.DisplayNameFor(model => model.Employees[0].EGN)
+                        </th>
+                        <th>
+                            <a asp-page="./Index" asp-route-sortOrder="@Model.BirthdaySort">
+                                @Html.DisplayNameFor(model => model.Employees[0].Birthdate)
+                            </a>
+                        </th>
+                    }
+                }
+                <th>
+                    @Html.DisplayNameFor(model => model.Employees[0].PhoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employees[0].Oragnisation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employees[0].Position)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Employees)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Family)
+                    </td>
+                    @{
+                        if (Model.Role == 2)
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EGN)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Birthdate)
+                            </td>
+                        }
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Oragnisation.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position.Name)
+                    </td>
+                    <td>
+                        @{
+                            if (Model.Role == 2)
+                            {
+                                <a asp-page="./Edit" class="btn btn-outline-primary btn-sm" asp-route-id="@item.ID">Корекция</a>
+                                <a asp-page="./Delete" class="btn btn-outline-primary btn-sm" asp-route-id="@item.ID">Изтриване</a>
+                            }
+                        }
+
+                        <a asp-page="./Details" class="btn btn-outline-primary btn-sm" asp-route-id="@item.ID">Детайли</a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

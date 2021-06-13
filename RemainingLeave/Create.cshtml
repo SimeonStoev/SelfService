@@ -1,0 +1,41 @@
+﻿@page
+@model SelfServiceHrProject.Pages.RemainingLeave.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3>Create</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RemainingLeaves.RemainingDays" class="control-label"></label>
+                <input asp-for="RemainingLeaves.RemainingDays" class="form-control" />
+                <span asp-validation-for="RemainingLeaves.RemainingDays" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RemainingLeaves.EmployeesId" class="control-label"></label>
+                <select asp-for="RemainingLeaves.EmployeesId" class ="form-control" asp-items="ViewBag.EmployeesId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="RemainingLeaves.LeaveReasonsId" class="control-label"></label>
+                <select asp-for="RemainingLeaves.LeaveReasonsId" class ="form-control" asp-items="ViewBag.LeaveReasonsId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index" class="btn btn-outline-primary">Back</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

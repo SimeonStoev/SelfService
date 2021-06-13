@@ -1,0 +1,55 @@
+﻿@page
+@model SelfServiceHrProject.Pages.HomePageModel
+@{
+}
+
+<div class="container">
+
+    <div style="text-align: center; font-size: 29px; font-family: 'Segoe Script'; color: blue">
+        Система за самообслужване на служители
+    </div>
+
+    <hr/>
+
+    <div class="card-deck">
+        <div class="card bg-primary">
+            <div class="card-body text-center">
+                <p class="card-text">Системата за самообслужване на служители дава възможност да се изпълняват основните функции по работния цикъл в една компания</p>
+            </div>
+        </div>
+        <div class="card bg-warning">
+            <div class="card-body text-center">
+                <p class="card-text">В нея се съдържа информация за служители, заплати, адреси, позиции, организационни единици, отпуски</p>
+            </div>
+        </div>
+        <div class="card bg-success">
+            <div class="card-body text-center">
+                <p class="card-text">Също така е възможно да се прави експорт на служителите под формата на Excel, както и експорт на данни за заплата под формата на pdf документ</p>
+            </div>
+        </div>
+        <div class="card bg-danger">
+            <div class="card-body text-center">
+                <p class="card-text">Не на последно място има възможност за пускане на отпуски</p>
+            </div>
+        </div>
+    </div>
+
+    @{
+        if (Model.Role == 2)
+        {
+            <hr />
+
+            <form method="post" asp-page="HomePage" style="margin:auto">
+
+                <input type="submit" class="btn btn-outline-primary btn-block" value="Орагнизационни единици" asp-page-handler="oraganisations" />
+                <hr />
+                <input type="submit" class="btn btn-outline-primary btn-block" value="Позиции" asp-page-handler="positions" />
+                <hr />
+                <input type="submit" class="btn btn-outline-primary btn-block"
+                       value="Системни потребители" asp-page-handler="users" />
+
+            </form>
+        }
+    }
+
+</div>

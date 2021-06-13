@@ -1,0 +1,38 @@
+﻿@page
+@model SelfServiceHrProject.Pages.Position.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3>Create new position</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Positions.Name" class="control-label"></label>
+                <input asp-for="Positions.Name" class="form-control" />
+                <span asp-validation-for="Positions.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Positions.Code" class="control-label"></label>
+                <input asp-for="Positions.Code" class="form-control" />
+                <span asp-validation-for="Positions.Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index" class="btn btn-outline-primary">Back</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

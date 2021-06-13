@@ -1,0 +1,49 @@
+﻿@page
+@model SelfServiceHrProject.Pages.Leave.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3>Заявка за отпуск</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Leaves.StartDate" class="control-label"></label>
+                <input asp-for="Leaves.StartDate" class="form-control" />
+                <span asp-validation-for="Leaves.StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Leaves.EndDate" class="control-label"></label>
+                <input asp-for="Leaves.EndDate" class="form-control" />
+                <span asp-validation-for="Leaves.EndDate" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="Leaves.Status" class="control-label"></label>
+                <select asp-for="Leaves.Status" class="form-control" asp-items="ViewBag.Status"></select>
+            </div>*@
+            <div class="form-group" hidden>
+                <label asp-for="Leaves.Emplpoyee" class="control-label"></label>
+                <select asp-for="Leaves.EmployeesId" class ="form-control" asp-items="ViewBag.EmployeesId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Leaves.LeaveReasons" class="control-label"></label>
+                <select asp-for="Leaves.LeaveReasonsId" class ="form-control" asp-items="ViewBag.LeaveReasonsId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Създай" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index" class="btn btn-outline-primary">Обратно</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

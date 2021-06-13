@@ -1,0 +1,90 @@
+﻿@page
+@model SelfServiceHrProject.Pages.Salaries.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h3>Детайли</h3>
+
+<div id="fragment">
+
+    <hr />
+
+    <div class="card" style="width: 500px; margin: auto">
+        <div class="card-body" style="margin:auto">Pay Slip</div>
+        <div class="card-footer" style="margin:auto"> @Html.DisplayFor(model => model.Salary.Employee.FullName) </div>
+    </div>
+
+
+    <div class="card" style="width: 500px; margin: auto">
+        <div class="card-body" style="margin:auto">
+            <div>
+                <span>
+                    @Html.DisplayNameFor(model => model.Salary.NetSalary)
+                </span>
+                <span>
+                    @Html.DisplayFor(model => model.Salary.NetSalary)
+                </span>
+            </div>
+            <div>
+                <span>
+                    @Html.DisplayNameFor(model => model.Salary.BonusSalary)
+                </span>
+                <span>
+                    @Html.DisplayFor(model => model.Salary.BonusSalary)
+                </span>
+            </div>
+            <div>
+                <span>
+                    @Html.DisplayNameFor(model => model.GrossSalary)
+                </span>
+                <span>
+                    @Html.DisplayFor(model => model.GrossSalary)
+                </span>
+            </div>
+            <hr/>
+            <div>Taxes</div>
+            <div>
+                <span>
+                    @Html.DisplayNameFor(model => model.HealthInsuarenceTax)
+                </span>
+                <span>
+                    @Html.DisplayFor(model => model.HealthInsuarenceTax)
+                </span>
+            </div>
+            <div>
+                <span>
+                    @Html.DisplayNameFor(model => model.PensionTax)
+                </span>
+                <span>
+                    @Html.DisplayFor(model => model.PensionTax)
+                </span>
+            </div>
+            <div>
+                <span>
+                    @Html.DisplayNameFor(model => model.OtherTaxes)
+                </span>
+                <span>
+                    @Html.DisplayFor(model => model.OtherTaxes)
+                </span>
+            </div>
+            <hr/>
+            <div>
+                <span>
+                    @Html.DisplayNameFor(model => model.Salary.FullNetSalary)
+                </span>
+                <span>
+                    @Html.DisplayFor(model => model.Salary.FullNetSalary)
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-page="./Index" class="btn btn-outline-primary">Обратно</a>
+</div>
+
+<hr/>
+
+<button class="btn btn-outline-warning" onclick="javascript:generatePaySlip();">Генерирай PDF</button>
